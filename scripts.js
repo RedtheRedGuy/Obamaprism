@@ -29,8 +29,6 @@ fullscreenButton.addEventListener('click', () => {
         document.requestFullscreen();
     } else if (document.mozRequestFullScreen) { // Firefox
         document.mozRequestFullScreen();
-    } else if (document.webkitRequestFullscreen) { // Chrome, Safari and Opera
-        document.webkitRequestFullscreen();
     } else if (document.msRequestFullscreen) { // IE/Edge
         document.msRequestFullscreen();
     }
