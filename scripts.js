@@ -25,18 +25,71 @@ document.addEventListener("click", function() {
     
 
 
-const fullscreenButton = document.getElementById('fullscreenButton');
 
-fullscreenButton.addEventListener('click', () => {
-    if (pyramid.requestFullscreen) {
-        pyramid.requestFullscreen();
-    } else if (pyramid.mozRequestFullScreen) {
-        pyramid.mozRequestFullScreen();
-    } else if (pyramid.webkitRequestFullscreen) {
-        pyramid.webkitRequestFullscreen();
-    } else if (pyramid.msRequestFullscreen) {
-        pyramid.msRequestFullscreen();
-    }
+
+function enterFullscreen() {
+
+if (document.documentElement.requestFullscreen) {
+
+document.documentElement.requestFullscreen();
+
+} else if (document.documentElement.mozRequestFullScreen) { // Firefox
+
+document.documentElement.mozRequestFullScreen();
+
+} else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+
+document.documentElement.webkitRequestFullscreen();
+
+} else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+
+document.documentElement.msRequestFullscreen();
+
+}
+
+}
+
+// Function to hide all elements except the pyramid container when in fullscreen
+
+function onFullscreenChange() {
+
+if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+
+// Entered fullscreen, hide other elements
+
+document.body.style.overflow = 'hidden'; // Ensure no scrollbars
+
+document.body.querySelectorAll(':not(.pyramid-container)').forEach(el => {
+
+el.style.display = 'none'; // Hide other elements
+
 });
 
+} else {
+
+
+document.body.querySelectorAll('*').forEach(el => {
+
+el.style.display = ''; // Reset display styles
+
+});
+
+}
+
+}
+
+
+window.onload = function() {
+
+enterFullscreen();
+
+};
+
+document.addEventListener('fullscreenchange', onFullscreenChange);
+
+document.addEventListener('webkitfullscreenchange', onFullscreenChange); // Safari
+
+document.addEventListener('mozfullscreenchange', onFullscreenChange); // Firefox
+
+document.addEventListener('MSFullscreenChange', onFullscreenChange); // IE/Edge
 
