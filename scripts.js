@@ -24,13 +24,7 @@ document.addEventListener("click", function() {
     changeTile3Button.addEventListener('
     click', () => { document.querySelector('.front').style.backgroundImage = "url('tile003.png')"; });
     
-document.addEventListener("click", function() {
-    var audio = document.getElementById("bg-music");
-    if (audio.muted) {
-        audio.muted = false;
-        audio.play();
-    }
-}, { once: true });
+
 
 const fullscreenButton = document.getElementById('fullscreenButton');
 
