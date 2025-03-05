@@ -45,7 +45,7 @@ function onFullscreenChange() {
     if (document.fullscreenElement) {
         document.body.style.overflow = 'hidden';
         document.querySelectorAll('body > *:not(.pyramid-container)').forEach(el => {
-            el.style.visibility = 'hidden';
+            el.style.visibility = 'visible';
         });
     } else {
         document.body.style.overflow = '';
