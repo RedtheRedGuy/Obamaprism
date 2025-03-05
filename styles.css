@@ -35,6 +35,7 @@ html, body {
 
 .base {
   transform: rotateX(90deg) translateZ(100px); /* Increased depth */
+  background-image: url('');
 }
 
 .front {
