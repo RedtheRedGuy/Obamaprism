@@ -12,7 +12,7 @@ document.addEventListener("click", function() {
     const changeTile1Button = document.getElementById('changeTile1');
     const changeTile2Button = document.getElementById('changeTile2'); 
     const changeTile3Button = document.getElementById('changeTile3');
-    
+    const fullscreenButton = document.getElementById('fullscreenButton');
     slider.addEventListener('input', () => {
         const speed = slider.value;
         speedValue.textContent = speed;
@@ -38,58 +38,22 @@ fullscreenButton.addEventListener('click', () => {
 
 
 
-function enterFullscreen() {
 
-if (document.documentElement.requestFullscreen) {
 
-document.documentElement.requestFullscreen();
-
-} else if (document.documentElement.mozRequestFullScreen) { // Firefox
-
-document.documentElement.mozRequestFullScreen();
-
-} else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
-
-document.documentElement.webkitRequestFullscreen();
-
-} else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-
-document.documentElement.msRequestFullscreen();
-
-}
-
-}
-
-// Function to hide all elements except the pyramid container when in fullscreen
 
 function onFullscreenChange() {
-
-if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
-
-// Entered fullscreen, hide other elements
-
-document.body.style.overflow = 'hidden'; // Ensure no scrollbars
-
-document.body.querySelectorAll(':not(.pyramid-container)').forEach(el => {
-
-el.style.display = 'none'; // Hide other elements
-
-});
-
-} else {
-
-
-document.body.querySelectorAll('*').forEach(el => {
-
-el.style.display = ''; // Reset display styles
-
-});
-
+    if (document.fullscreenElement) {
+        document.body.style.overflow = 'hidden';
+        document.querySelectorAll('body > *:not(.pyramid-container)').forEach(el => {
+            el.style.visibility = 'hidden';
+        });
+    } else {
+        document.body.style.overflow = '';
+        document.querySelectorAll('body > *').forEach(el => {
+            el.style.visibility = 'visible';
+        });
+    }
 }
-
-}
-
-
 
 
 document.addEventListener('fullscreenchange', onFullscreenChange);
