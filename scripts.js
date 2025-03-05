@@ -24,6 +24,17 @@ document.addEventListener("click", function() {
     changeTile3Button.addEventListener('click', () => { document.querySelector('.front').style.backgroundImage = "url('tile003.png')"; });
     
 
+fullscreenButton.addEventListener('click', () => {
+    if (pyramid.requestFullscreen) {
+        pyramid.requestFullscreen();
+    } else if (pyramid.mozRequestFullScreen) { // Firefox
+        pyramid.mozRequestFullScreen();
+    } else if (pyramid.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        pyramid.webkitRequestFullscreen();
+    } else if (pyramid.msRequestFullscreen) { // IE/Edge
+        pyramid.msRequestFullscreen();
+    }
+});
 
 
 
