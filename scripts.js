@@ -25,14 +25,14 @@ document.addEventListener("click", function() {
     
 
 fullscreenButton.addEventListener('click', () => {
-    if (pyramid.requestFullscreen) {
-        pyramid.requestFullscreen();
-    } else if (pyramid.mozRequestFullScreen) { // Firefox
-        pyramid.mozRequestFullScreen();
-    } else if (pyramid.webkitRequestFullscreen) { // Chrome, Safari and Opera
-        pyramid.webkitRequestFullscreen();
-    } else if (pyramid.msRequestFullscreen) { // IE/Edge
-        pyramid.msRequestFullscreen();
+    if (document.requestFullscreen) {
+        document.requestFullscreen();
+    } else if (document.mozRequestFullScreen) { // Firefox
+        document.mozRequestFullScreen();
+    } else if (document.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        document.webkitRequestFullscreen();
+    } else if (document.msRequestFullscreen) { // IE/Edge
+        document.msRequestFullscreen();
     }
 });
 
@@ -45,7 +45,7 @@ function onFullscreenChange() {
     if (document.fullscreenElement) {
         document.body.style.overflow = 'hidden';
         document.querySelectorAll('body > *:not(.pyramid-container)').forEach(el => {
-            el.style.visibility = 'visible';
+            el.style.visibility = 'hidden';
         });
     } else {
         document.body.style.overflow = '';
