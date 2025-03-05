@@ -1,0 +1,86 @@
+body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffffff;
+    }
+
+    .pyramid-container {
+      perspective: 800px;
+      transform-style: preserve-3d;
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
+
+    .pyramid {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateX(-30deg) rotateY(45deg);
+      transform-style: preserve-3d;
+      width: 150px;
+      height: 150px;
+      animation: spin 3s infinite linear;
+    }
+
+    .face {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+      transform-origin: bottom;
+    }
+
+    /* Base of the pyramid */
+    .base {
+      transform: rotateX(90deg) translateZ(75px);
+      background-image: url('');
+    }
+
+    /* Four triangular faces */
+    .front {
+      transform: rotateY(0deg) translateZ(75px) rotateX(30deg);
+      background-image: url('tile001.png');
+    }
+
+    .back {
+      transform: rotateY(180deg) translateZ(75px) rotateX(30deg);
+      background-image: url('tile005.png');
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(75px) rotateX(30deg);
+      background-image: url('tile006.png');
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(75px) rotateX(30deg);
+      background-image: url('tile004.png');
+    }
+
+    /* Spinning animation */
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotateX(-30deg) rotateY(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotateX(-30deg) rotateY(360deg);
+      }
+    }
+    .slider-container { 
+      margin-top: 20px; text-align: center;
+    } 
+    input[type="range"] 
+    { width: 200px; }
+
+    .button-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+
