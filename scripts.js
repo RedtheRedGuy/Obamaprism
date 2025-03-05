@@ -18,7 +18,7 @@ document.addEventListener("click", function() {
         speedValue.textContent = speed;
         pyramid.style.animationDuration = `${3 / speed}s`;
     });
-
+    pyramid.style.animationDuration = `${3 / 2}s`;
     changeTile1Button.addEventListener('click', () => { document.querySelector('.front').style.backgroundImage = "url('tile001.png')"; }); 
     changeTile2Button.addEventListener('click', () => { document.querySelector('.front').style.backgroundImage = "url('tile002.png')"; }); 
     changeTile3Button.addEventListener('click', () => { document.querySelector('.front').style.backgroundImage = "url('tile003.png')"; });
