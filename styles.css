@@ -24,7 +24,7 @@
       transform-style: preserve-3d;
       width: 150px;
       height: 150px;
-      animation: spin 3s infinite linear;
+      animation: spin 1.5s infinite linear;
     }
 
     .face {
