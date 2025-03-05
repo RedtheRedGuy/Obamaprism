@@ -79,11 +79,7 @@ el.style.display = ''; // Reset display styles
 }
 
 
-window.onload = function() {
 
-enterFullscreen();
-
-};
 
 document.addEventListener('fullscreenchange', onFullscreenChange);
 
