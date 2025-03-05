@@ -27,11 +27,10 @@ document.addEventListener("click", function() {
 
 const fullscreenButton = document.getElementById('fullscreenButton');
 
-// Fullscreen toggle function
 fullscreenButton.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-        pyramid.requestFullscreen();
-    }
+    
+   pyramid.requestFullscreen();
+    
 });
 
 
