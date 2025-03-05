@@ -30,11 +30,11 @@ const fullscreenButton = document.getElementById('fullscreenButton');
 fullscreenButton.addEventListener('click', () => {
     if (pyramid.requestFullscreen) {
         pyramid.requestFullscreen();
-    } else if (pyramid.mozRequestFullScreen) { // Firefox
+    } else if (pyramid.mozRequestFullScreen) {
         pyramid.mozRequestFullScreen();
-    } else if (pyramid.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    } else if (pyramid.webkitRequestFullscreen) {
         pyramid.webkitRequestFullscreen();
-    } else if (pyramid.msRequestFullscreen) { // IE/Edge
+    } else if (pyramid.msRequestFullscreen) {
         pyramid.msRequestFullscreen();
     }
 });
