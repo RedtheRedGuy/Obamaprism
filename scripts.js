@@ -16,7 +16,7 @@ document.addEventListener("click", function() {
     slider.addEventListener('input', () => {
         const speed = slider.value;
         speedValue.textContent = speed;
-        document.querySelector('.pyramid-container').style.animationDuration = `${3 / speed}s`;
+        pyramid.style.animationDuration = `${3 / speed}s`;
     });
     pyramid.style.animationDuration = `${3 / speed}s`;
     changeTile1Button.addEventListener('click', () => { document.querySelector('.front').style.backgroundImage = "url('tile001.png')"; }); 
