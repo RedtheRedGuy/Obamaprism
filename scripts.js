@@ -39,7 +39,6 @@ const changeTile = (button, tile) => {
 function isFullscreen() {
     return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
 }
-
 // Function to toggle visibility of all elements outside pyramid-container
 function toggleFullscreenUI() {
     const pyramidContainer = document.getElementById('pyramid-container');
