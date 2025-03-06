@@ -35,31 +35,25 @@ const changeTile = (button, tile) => {
     }
 };
 // Function to check if the document is in fullscreen
+// Function to check if the document is in fullscreen
 function isFullscreen() {
     return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
 }
 
-// Function to toggle visibility of the GUI elements
+// Function to toggle visibility of all GUI elements
 function toggleFullscreenUI() {
     const pyramid = document.getElementById('pyramid');
     const body = document.getElementById('body');
     
-    const allGUIs = document.querySelectorAll('.gui'); // Assuming all GUI elements have the 'gui' class
+    const allElements = document.body.children; // Get all elements in the document body
 
-    // If in fullscreen, hide all GUIs except for pyramid and body
-    if (isFullscreen()) {
-        allGUIs.forEach(gui => {
-            if (gui !== pyramid && gui !== body) {
-                gui.style.display = 'none';
-            } else {
-                gui.style.display = 'block';
-            }
-        });
-    } else {
-        // Show all GUIs if not in fullscreen
-        allGUIs.forEach(gui => {
-            gui.style.display = 'block';
-        });
+    // Loop through all elements and hide them except pyramid and body
+    for (let element of allElements) {
+        if (element !== pyramid && element !== body) {
+            element.style.display = 'none';
+        } else {
+            element.style.display = 'block'; // Make sure pyramid and body remain visible
+        }
     }
 }
 
@@ -68,6 +62,11 @@ document.addEventListener('fullscreenchange', toggleFullscreenUI);
 document.addEventListener('webkitfullscreenchange', toggleFullscreenUI);
 document.addEventListener('mozfullscreenchange', toggleFullscreenUI);
 document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
+
+// Initial check
+
+
+// Listen for fullscreen change events
 
 // Initial check
 toggleFullscreenUI();
