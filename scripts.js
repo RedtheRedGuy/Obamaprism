@@ -35,7 +35,6 @@ const changeTile = (button, tile) => {
     }
 };
 // Function to check if the document is in fullscreen
-// Function to check if the document is in fullscreen
 function isFullscreen() {
     return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
 }
@@ -45,16 +44,16 @@ function toggleFullscreenUI() {
     const pyramid = document.getElementById('pyramid');
     const body = document.getElementById('body');
     
-    const allElements = document.body.children; // Get all elements in the document body
+    const allElements = document.querySelectorAll('*'); // Select all elements in the document
 
     // Loop through all elements and hide them except pyramid and body
-    for (let element of allElements) {
+    allElements.forEach(element => {
         if (element !== pyramid && element !== body) {
-            element.style.display = 'none';
+            element.style.display = 'none'; // Hide all other elements
         } else {
             element.style.display = 'block'; // Make sure pyramid and body remain visible
         }
-    }
+    });
 }
 
 // Listen for fullscreen change events
@@ -62,11 +61,6 @@ document.addEventListener('fullscreenchange', toggleFullscreenUI);
 document.addEventListener('webkitfullscreenchange', toggleFullscreenUI);
 document.addEventListener('mozfullscreenchange', toggleFullscreenUI);
 document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
-
-// Initial check
-
-
-// Listen for fullscreen change events
 
 // Initial check
 toggleFullscreenUI();
