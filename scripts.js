@@ -34,26 +34,35 @@ const changeTile = (button, tile) => {
         });
     }
 };
-// Function to check if the document is in fullscreen
-// Function to check if the document is in fullscreen
-function isFullscreen() {
-    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-}
 // Function to toggle visibility of all elements outside pyramid-container
 function toggleFullscreenUI() {
-    const pyramidContainer = document.getElementById('pyramid-container');
-    
-    // Select all elements in the document
-    const allElements = document.querySelectorAll('*');
+    const pyramidContainers = document.querySelectorAll('.pyramid-container'); // Select all elements with the class 'pyramid-container'
 
-    // Loop through all elements and hide them if they are not inside pyramid-container
-    allElements.forEach(element => {
-        if (!pyramidContainer.contains(element)) {
-            element.style.display = 'none'; // Hide all elements outside pyramid-container
-        } else {
-            element.style.display = 'block'; // Make sure pyramid-container and its contents remain visible
-        }
-    });
+    // Ensure there is at least one pyramid-container
+    if (pyramidContainers.length > 0) {
+        // Select all elements in the document
+        const allElements = document.querySelectorAll('*');
+
+        // Loop through all elements and hide them if they are not inside pyramid-container
+        allElements.forEach(element => {
+            // Check if the element is inside any pyramid-container
+            let isInsidePyramidContainer = false;
+            pyramidContainers.forEach(container => {
+                if (container.contains(element)) {
+                    isInsidePyramidContainer = true;
+                }
+            });
+
+            // Hide elements not inside pyramid-container
+            if (!isInsidePyramidContainer) {
+                element.style.display = 'none';
+            } else {
+                element.style.display = 'block'; // Make sure pyramid-container and its contents remain visible
+            }
+        });
+    } else {
+        console.error("No elements with class 'pyramid-container' found!");
+    }
 }
 
 // Listen for fullscreen change events
