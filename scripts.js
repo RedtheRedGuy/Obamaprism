@@ -34,7 +34,13 @@ const changeTile = (button, tile) => {
         });
     }
 };
-
+document.getElementById("fullscreenBtn").addEventListener("click", function() { 
+    if (!document.fullscreenElement) { 
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen(); 
+    } 
+});
 changeTile(changeTile1Button, 'tile001.png');
 changeTile(changeTile2Button, 'tile002.png');
 changeTile(changeTile3Button, 'tile003.png');
