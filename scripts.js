@@ -34,6 +34,44 @@ const changeTile = (button, tile) => {
         });
     }
 };
+// Function to check if the document is in fullscreen
+function isFullscreen() {
+    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+}
+
+// Function to toggle visibility of the GUI elements
+function toggleFullscreenUI() {
+    const pyramid = document.getElementById('pyramid');
+    const body = document.getElementById('body');
+    
+    const allGUIs = document.querySelectorAll('.gui'); // Assuming all GUI elements have the 'gui' class
+
+    // If in fullscreen, hide all GUIs except for pyramid and body
+    if (isFullscreen()) {
+        allGUIs.forEach(gui => {
+            if (gui !== pyramid && gui !== body) {
+                gui.style.display = 'none';
+            } else {
+                gui.style.display = 'block';
+            }
+        });
+    } else {
+        // Show all GUIs if not in fullscreen
+        allGUIs.forEach(gui => {
+            gui.style.display = 'block';
+        });
+    }
+}
+
+// Listen for fullscreen change events
+document.addEventListener('fullscreenchange', toggleFullscreenUI);
+document.addEventListener('webkitfullscreenchange', toggleFullscreenUI);
+document.addEventListener('mozfullscreenchange', toggleFullscreenUI);
+document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
+
+// Initial check
+toggleFullscreenUI();
+
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
     if (!document.fullscreenElement &&    // Check if fullscreen is not active
         !document.webkitFullscreenElement && 
