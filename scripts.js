@@ -12,7 +12,7 @@ const pyramid = document.querySelector('.pyramid');
 const changeTile1Button = document.getElementById('changeTile1');
 const changeTile2Button = document.getElementById('changeTile2');
 const changeTile3Button = document.getElementById('changeTile3');
-const fullscreenButton = document.getElementById('fullscreenButton');
+const fullscreenButton = document.getElementById('fullscreenBtn');
 
 if (slider && speedValue && pyramid) {
     slider.addEventListener('input', () => {
