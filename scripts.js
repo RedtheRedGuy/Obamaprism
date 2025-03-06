@@ -63,7 +63,7 @@ document.addEventListener('mozfullscreenchange', toggleFullscreenUI);
 document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
 
 // Initial check
-toggleFullscreenUI();
+
 
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
     if (!document.fullscreenElement &&    // Check if fullscreen is not active
