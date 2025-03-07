@@ -43,34 +43,26 @@ function toggleFullscreenUI() {
         return;
     }
 
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().then(() => {
-            document.querySelectorAll('body > *:not(.pyramid-container)').forEach(element => {
-                element.style.display = 'none'; // Hide everything except .pyramid-container
-            });
+    document.querySelectorAll('body > *').forEach(element => {
+        if (element !== pyramidContainer) {
+            element.style.display = document.fullscreenElement ? 'none' : '';
+        }
+    });
 
-            pyramidContainer.style.display = 'flex';
-            pyramidContainer.style.justifyContent = 'center';
-            pyramidContainer.style.alignItems = 'center';
-            pyramidContainer.style.height = '100vh';
-        }).catch(err => console.error("Fullscreen request failed:", err));
-    } else {
-        document.exitFullscreen().then(() => {
-            document.querySelectorAll('body > *:not(.pyramid-container)').forEach(element => {
-                element.style.display = ''; // Restore visibility
-            });
-        }).catch(err => console.error("Exiting fullscreen failed:", err));
-    }
+    // Force pyramid container to be visible
+    pyramidContainer.style.display = 'block';
 }
 
-
-// Listen for fullscreen changes
+// Listen for fullscreen change events
 document.addEventListener('fullscreenchange', toggleFullscreenUI);
 document.addEventListener('webkitfullscreenchange', toggleFullscreenUI);
 document.addEventListener('mozfullscreenchange', toggleFullscreenUI);
 document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
 
-// Initial check
+// Run once on page load
+toggleFullscreenUI();
+
+
 
 
 
