@@ -36,23 +36,33 @@ const changeTile = (button, tile) => {
 };
 // Function to toggle visibility of all elements outside pyramid-container
 function toggleFullscreenUI() {
-    const pyramidContainer = document.querySelector('.pyramid-container'); // Get pyramid container
+    const pyramidContainer = document.querySelector('.pyramid-container');
 
-    if (pyramidContainer) {
-        document.querySelectorAll('body > *').forEach(element => {
-            if (element !== pyramidContainer) {
-                element.style.display = document.fullscreenElement ? 'none' : ''; // Hide everything outside
-            } else {
-                element.style.display = 'flex'; // Ensure pyramid-container is visible
-                element.style.justifyContent = 'center'; // Center contents
-                element.style.alignItems = 'center';
-                element.style.height = '100vh'; // Full height to keep centered
-            }
-        });
-    } else {
+    if (!pyramidContainer) {
         console.error("No element with class 'pyramid-container' found!");
+        return;
+    }
+
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+            document.querySelectorAll('body > *:not(.pyramid-container)').forEach(element => {
+                element.style.display = 'none'; // Hide everything except .pyramid-container
+            });
+
+            pyramidContainer.style.display = 'flex';
+            pyramidContainer.style.justifyContent = 'center';
+            pyramidContainer.style.alignItems = 'center';
+            pyramidContainer.style.height = '100vh';
+        }).catch(err => console.error("Fullscreen request failed:", err));
+    } else {
+        document.exitFullscreen().then(() => {
+            document.querySelectorAll('body > *:not(.pyramid-container)').forEach(element => {
+                element.style.display = ''; // Restore visibility
+            });
+        }).catch(err => console.error("Exiting fullscreen failed:", err));
     }
 }
+
 
 // Listen for fullscreen changes
 document.addEventListener('fullscreenchange', toggleFullscreenUI);
