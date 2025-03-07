@@ -73,7 +73,7 @@ fileInput.addEventListener('change', (e) => {
     const reader = new FileReader();
 
     reader.onload = (event) => {
-        front.src = event.target.result;
+        front.style.backgroundImage = event.target.result;
     };
 
     reader.readAsDataURL(file);
