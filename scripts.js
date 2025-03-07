@@ -36,40 +36,29 @@ const changeTile = (button, tile) => {
 };
 // Function to toggle visibility of all elements outside pyramid-container
 function toggleFullscreenUI() {
-    const pyramidContainers = document.querySelectorAll('.pyramid-container'); // Select all elements with the class 'pyramid-container'
+    const pyramidContainer = document.querySelector('.pyramid-container'); // Get the pyramid container
 
-    // Ensure there is at least one pyramid-container
-    if (pyramidContainers.length > 0) {
-        // Select all elements in the document
-        const allElements = document.querySelectorAll('*');
-
-        // Loop through all elements and hide them if they are not inside pyramid-container
-        allElements.forEach(element => {
-            // Check if the element is inside any pyramid-container
-            let isInsidePyramidContainer = false;
-            pyramidContainers.forEach(container => {
-                if (container.contains(element)) {
-                    isInsidePyramidContainer = true;
-                }
-            });
-
-            // Hide elements not inside pyramid-container
-            if (!isInsidePyramidContainer) {
-                element.style.display = 'none';
+    if (pyramidContainer) {
+        document.querySelectorAll('body > *').forEach(element => {
+            if (element !== pyramidContainer) {
+                element.style.display = document.fullscreenElement ? 'none' : ''; // Hide all except pyramid-container
             } else {
-                element.style.display = 'block'; // Make sure pyramid-container and its contents remain visible
+                element.style.display = 'block'; // Ensure pyramid-container stays visible
             }
         });
     } else {
-        console.error("No elements with class 'pyramid-container' found!");
+        console.error("No element with class 'pyramid-container' found!");
     }
 }
 
-// Listen for fullscreen change events
+// Listen for fullscreen changes
 document.addEventListener('fullscreenchange', toggleFullscreenUI);
 document.addEventListener('webkitfullscreenchange', toggleFullscreenUI);
 document.addEventListener('mozfullscreenchange', toggleFullscreenUI);
 document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
+
+// Initial check
+toggleFullscreenUI();
 
 
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
