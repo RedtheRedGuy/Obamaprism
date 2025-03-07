@@ -55,7 +55,14 @@ document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
 // Initial check when the page loads
 toggleFullscreenUI();
 
-
+let isBackground1 = true;
+function toggleBackground() {
+    if (isBackground1) { 
+        document.body.style.backgroundImage = 'url("FO.png")';
+    } else { 
+        document.body.style.backgroundImage = 'url("WNF")'; } 
+    isBackground1 = !isBackground1;
+}
 
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
     if (!document.fullscreenElement &&    // Check if fullscreen is not active
