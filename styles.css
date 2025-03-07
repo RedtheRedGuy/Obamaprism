@@ -100,7 +100,9 @@ input[type="range"] {
 .button-container {
   margin-top: 20px;
 }
-
+.input[type="file"] {
+  text-align: center;
+}
 #fullscreenBtn {
   margin-top: 20px;
 }
