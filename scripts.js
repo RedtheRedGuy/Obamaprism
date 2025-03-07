@@ -51,6 +51,8 @@ function toggleFullscreenUI() {
 
     // Force pyramid container to be visible
     pyramidContainer.style.display = 'block';
+    pyramid.style.display = 'block';
+    
 }
 
 // Listen for fullscreen change events
