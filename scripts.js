@@ -36,14 +36,17 @@ const changeTile = (button, tile) => {
 };
 // Function to toggle visibility of all elements outside pyramid-container
 function toggleFullscreenUI() {
-    const pyramidContainer = document.querySelector('.pyramid-container'); // Get the pyramid container
+    const pyramidContainer = document.querySelector('.pyramid-container'); // Get pyramid container
 
     if (pyramidContainer) {
         document.querySelectorAll('body > *').forEach(element => {
             if (element !== pyramidContainer) {
-                element.style.display = document.fullscreenElement ? 'none' : ''; // Hide all except pyramid-container
+                element.style.display = document.fullscreenElement ? 'none' : ''; // Hide everything outside
             } else {
-                element.style.display = 'block'; // Ensure pyramid-container stays visible
+                element.style.display = 'flex'; // Ensure pyramid-container is visible
+                element.style.justifyContent = 'center'; // Center contents
+                element.style.alignItems = 'center';
+                element.style.height = '100vh'; // Full height to keep centered
             }
         });
     } else {
@@ -59,6 +62,7 @@ document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
 
 // Initial check
 toggleFullscreenUI();
+
 
 
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
