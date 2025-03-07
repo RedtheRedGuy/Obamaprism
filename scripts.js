@@ -63,6 +63,21 @@ function toggleBackground() {
         document.body.style.backgroundImage = 'url("WNF")'; } 
     isBackground1 = !isBackground1;
 }
+const fileInput = document.getElementById('fileInput');
+
+// Function to handle image upload and crop
+fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+        front.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+});
 
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
     if (!document.fullscreenElement &&    // Check if fullscreen is not active
