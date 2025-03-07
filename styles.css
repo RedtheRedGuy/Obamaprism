@@ -59,16 +59,19 @@ body {
 .back {
   transform: rotateY(180deg) translateZ(75px) rotateX(30deg);
   background-image: url('tile005.png');
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 .left {
   transform: rotateY(-90deg) translateZ(75px) rotateX(30deg);
   background-image: url('tile006.png');
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 .right {
   transform: rotateY(90deg) translateZ(75px) rotateX(30deg);
   background-image: url('tile004.png');
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 @keyframes spin {
