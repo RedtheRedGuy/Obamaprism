@@ -10,10 +10,11 @@ html, body {
   height: 100vh;
   margin: 0;
   background-color: #ffffff;
+  position: relative; /* This ensures controls are positioned relative to the body */
 }
 
 .pyramid {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotateX(-30deg) rotateY(45deg);
@@ -67,9 +68,17 @@ html, body {
   }
 }
 
-.slider-container { 
-  margin-top: 20px;
+.control-panel {
+  position: absolute;
+  top: 100%; /* Position at the bottom of the pyramid */
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
+  z-index: 1; /* Ensures the controls are on top of the pyramid */
+}
+
+.slider-container {
+  margin-top: 20px;
 }
 
 input[type="range"] {
