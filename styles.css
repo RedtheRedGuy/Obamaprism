@@ -100,12 +100,14 @@ input[type="range"] {
   width: 200px;
 }
 
-.button-container input[type="file"] {
-  display: block;
-  margin: 0 auto; /* Centers it horizontally */
+.button-container {
   margin-top: 20px;
 }
-
+input[type="file"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #fullscreenBtn {
   margin-top: 20px;
 }
