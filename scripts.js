@@ -70,14 +70,21 @@ fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
+    // Check if the file is an image
+    if (!file.type.startsWith('image/')) {
+        alert('Please upload a valid image file.');
+        return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = (event) => {
-        front.style.backgroundImage = event.target.result;
+        front.style.backgroundImage = `url(${event.target.result})`;
     };
 
     reader.readAsDataURL(file);
 });
+
 
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
     if (!document.fullscreenElement &&    // Check if fullscreen is not active
