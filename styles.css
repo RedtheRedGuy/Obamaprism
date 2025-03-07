@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   background-color: #ffffff;
   position: relative; /* Helps position the pyramid and controls */
@@ -23,7 +23,7 @@ body {
 
 .pyramid {
   position: relative;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotateX(-30deg) rotateY(45deg);
   transform-style: preserve-3d;
