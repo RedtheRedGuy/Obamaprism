@@ -61,7 +61,7 @@ document.addEventListener('mozfullscreenchange', toggleFullscreenUI);
 document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
 
 // Initial check
-toggleFullscreenUI();
+
 
 
 
