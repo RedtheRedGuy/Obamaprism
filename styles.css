@@ -53,6 +53,7 @@ body {
 .front {
   transform: rotateY(0deg) translateZ(75px) rotateX(30deg);
   background-image: url('tile001.png');
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); 
 }
 
 .back {
