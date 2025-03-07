@@ -79,6 +79,7 @@ fileInput.addEventListener('change', (e) => {
     const reader = new FileReader();
 
     reader.onload = (event) => {
+        const front = document.querySelector('.front');
         front.style.backgroundImage = `url(${event.target.result})`;
     };
 
