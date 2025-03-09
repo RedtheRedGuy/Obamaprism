@@ -17,12 +17,26 @@ const fullscreenButton = document.getElementById('fullscreenBtn');
 if (slider && speedValue && pyramid) {
     slider.addEventListener('input', () => {
         const speed = parseFloat(slider.value);
-        if (!isNaN(speed) && speed > -15) {
+        
+        if (!isNaN(speed)) {
             speedValue.textContent = speed;
-            pyramid.style.animationDuration = `${3 / speed}s`;
+            
+            // Stop if speed is 0
+            if (speed === 0) {
+                pyramid.style.animation = 'none';
+            }
+            // Reverse if speed is lower than 0
+            else if (speed < 0) {
+                pyramid.style.animation = `rotate-reverse ${3 / Math.abs(speed)}s infinite linear`;
+            }
+            // Normal speed
+            else {
+                pyramid.style.animation = `rotate ${3 / speed}s infinite linear`;
+            }
         }
     });
 }
+
 
 const changeTile = (button, tile) => {
     if (button) {
