@@ -86,7 +86,7 @@ function toggleHand() {
     } else { 
         hand.src = currentIdk;
     }
-    handenabled = !handenabled
+    handenabled = !handenabled;
 }
 
 const fileInput = document.getElementById('fileInput');
