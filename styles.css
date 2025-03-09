@@ -6,6 +6,13 @@ html, body {
   margin: 0;
   font-family: "Comic Sans MS";
 }
+p, h1, h2, h3, h4, h5, h6, span, a, label, strong, em {
+    text-shadow: 
+        -1px -1px 0 white,  
+         1px -1px 0 white,
+        -1px  1px 0 white,
+         1px  1px 0 white;
+}
 
 body {
   background-repeat: no-repeat;
