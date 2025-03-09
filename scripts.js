@@ -65,12 +65,10 @@ function toggleBackground() {
 }
 const fileInput = document.getElementById('fileInput');
 
-// Function to handle image upload and crop
 fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Check if the file is an image
     if (!file.type.startsWith('image/')) {
         alert('Please upload a valid image file.');
         return;
@@ -79,12 +77,32 @@ fileInput.addEventListener('change', (e) => {
     const reader = new FileReader();
 
     reader.onload = (event) => {
-        const front = document.querySelector('.front');
-        front.style.backgroundImage = `url(${event.target.result})`;
+        const img = new Image();
+        img.src = event.target.result;
+
+        img.onload = () => {
+            const overlay = new Image();
+            overlay.src = 'Overlay.png';
+
+            overlay.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+
+            
+                ctx.drawImage(img, 0, 0);
+                ctx.drawImage(overlay, 0, 0, img.width, img.height);
+
+                const front = document.querySelector('.front');
+                front.style.backgroundImage = `url(${canvas.toDataURL()})`;
+            };
+        };
     };
 
     reader.readAsDataURL(file);
 });
+
 
 
 document.getElementById("fullscreenBtn").addEventListener("click", function() {
