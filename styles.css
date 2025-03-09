@@ -117,7 +117,7 @@ input[type="range"] {
 input[type="file"] {
   display: block; /* Ensures the input is a block-level element */
   margin-left: 13%; /* Centers the input horizontally */
-  padding: 20px; /* Optional: Adjust padding for better appearance */
+  padding: 0px; /* Optional: Adjust padding for better appearance */
 }
 #fullscreenBtn {
   margin-top: 20px;
