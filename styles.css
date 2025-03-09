@@ -104,9 +104,9 @@ input[type="range"] {
   margin-top: 20px;
 }
 input[type="file"] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: block; /* Ensures the input is a block-level element */
+  margin-left: 13%; /* Centers the input horizontally */
+  padding: 20px; /* Optional: Adjust padding for better appearance */
 }
 #fullscreenBtn {
   margin-top: 20px;
