@@ -6,6 +6,7 @@ document.addEventListener("click", function () {
     }
 }, { once: true });
 
+const hand = document.getElementById('hand');
 const slider = document.getElementById('speedSlider');
 const speedValue = document.getElementById('speedValue');
 const pyramid = document.querySelector('.pyramid');
@@ -77,6 +78,17 @@ function toggleBackground() {
         document.body.style.backgroundImage = 'url("WNF")'; } 
     isBackground1 = !isBackground1;
 }
+const currentIdk = 'hand1.png'
+let handenabled = false
+function toggleHand() {
+    if (handenabled) { 
+        hand.src = 'hand0.png';
+    } else { 
+        hand.src = currentIdk;
+    }
+    handenabled = !handenabled
+}
+
 const fileInput = document.getElementById('fileInput');
 
 fileInput.addEventListener('change', (e) => {
