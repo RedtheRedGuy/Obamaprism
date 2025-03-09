@@ -17,7 +17,7 @@ const fullscreenButton = document.getElementById('fullscreenBtn');
 if (slider && speedValue && pyramid) {
     slider.addEventListener('input', () => {
         const speed = parseFloat(slider.value);
-        if (!isNaN(speed) && speed > 0) {
+        if (!isNaN(speed) && speed > -15) {
             speedValue.textContent = speed;
             pyramid.style.animationDuration = `${3 / speed}s`;
         }
