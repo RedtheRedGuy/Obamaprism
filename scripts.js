@@ -6,6 +6,10 @@ document.addEventListener("click", function () {
     }
 }, { once: true });
 
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
 const hand = document.getElementById('hand');
 const slider = document.getElementById('speedSlider');
 const speedValue = document.getElementById('speedValue');
@@ -38,6 +42,42 @@ if (slider && speedValue && pyramid) {
     });
 }
 
+function playAnimation() {
+    let sound = document.getElementById("sound");
+
+    sound.play();
+    
+    pyramid.style.animation = 'none';
+    
+    pyramid.style.animation = "beatbox 10s infinite linear ";
+    sleep(1).then(() => {
+        var audio = document.getElementById("bg-music");
+        audio.muted = true;
+        sleep(9999).then(() => {
+        const speed = parseFloat(slider.value);
+        
+        if (!isNaN(speed)) {
+            speedValue.textContent = speed;
+            
+            // Stop if speed is 0
+            if (speed === 0) {
+                pyramid.style.animation = 'none';
+            }
+            // Reverse if speed is lower than 0
+            else if (speed < 0) {
+                pyramid.style.animation = `rotate-reverse ${3 / Math.abs(speed)}s infinite linear`;
+            }
+            // Normal speed
+            else {
+                pyramid.style.animation = `rotate ${3 / speed}s infinite linear`;
+                
+            }
+             
+        }  var audio = document.getElementById("bg-music");
+        audio.muted = false;});
+    });
+  
+}
 
 const changeTile = (button, tile) => {
     if (button) {
