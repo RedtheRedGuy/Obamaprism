@@ -110,14 +110,19 @@ document.addEventListener('MSFullscreenChange', toggleFullscreenUI);
 // Initial check when the page loads
 toggleFullscreenUI();
 
-let isBackground1 = true;
+let backgroundState = 0; // Keeps track of the current background
+
 function toggleBackground() {
-    if (isBackground1) { 
-        document.body.style.backgroundImage = 'url("FO.png")';
-    } else { 
-        document.body.style.backgroundImage = 'url("WNF")'; } 
-    isBackground1 = !isBackground1;
+    if (backgroundState === 0) {
+        document.body.style.backgroundImage = 'url("FO.png")';  // First background
+    } else if (backgroundState === 1) {
+        document.body.style.backgroundImage = 'url("WNF")';  // Second background
+    } else {
+        document.body.style.backgroundImage = 'url("WXPB.png")';  // Third background
+    }
+    backgroundState = (backgroundState + 1) % 3;  // Cycle through 0, 1, 2
 }
+
 const currentIdk = 'hand1.png'
 let handenabled = false
 function toggleHand() {
