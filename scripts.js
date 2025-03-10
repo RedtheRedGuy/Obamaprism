@@ -116,9 +116,9 @@ function toggleBackground() {
     if (backgroundState === 0) {
         document.body.style.backgroundImage = 'url("FO.png")';  // First background
     } else if (backgroundState === 1) {
-        document.body.style.backgroundImage = 'url("WNF")';  // Second background
+        document.body.style.backgroundImage = 'url("WXPB.png")';  // Second background
     } else {
-        document.body.style.backgroundImage = 'url("WXPB.png")';  // Third background
+        document.body.style.backgroundImage = 'url("WNF")';  // Third background
     }
     backgroundState = (backgroundState + 1) % 3;  // Cycle through 0, 1, 2
 }
