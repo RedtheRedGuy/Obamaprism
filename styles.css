@@ -42,7 +42,7 @@ body {
   transform-style: preserve-3d;
   width: 150px;
   height: 100px;
-  animation: rotate 1.5s infinite linear;
+  animation: rotate 2s infinite linear;
   will-change: transform;
 }
 
@@ -83,6 +83,39 @@ body {
   background-image: url('tile004.png');
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
+
+
+@keyframes beatbox {
+  0% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(45deg);
+  }
+  5% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(10deg);
+  }
+  10%, 18%, 24%, 30%, 38%, 44% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(25deg);
+  }
+  12%, 22%, 26%, 32%, 42%, 46% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(10deg);
+  }
+  14%, 20%, 28%, 34%, 40%, 48% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(-25deg);
+  }
+  16%, 23%, 29%, 36%, 43%, 49% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(-10deg);
+  }
+  55%, 60% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(0deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(360deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotateX(-30deg) rotateY(1080deg);
+  }
+}
+
 
 @keyframes rotate {
     0% {
