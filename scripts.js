@@ -18,7 +18,7 @@ const changeTile1Button = document.getElementById('changeTile1');
 const changeTile2Button = document.getElementById('changeTile2');
 const changeTile3Button = document.getElementById('changeTile3');
 const fullscreenButton = document.getElementById('fullscreenBtn');
-const changeTile3Button = document.getElementById('changeTile4');
+const changeTile4Button = document.getElementById('changeTile4');
 
 if (slider && speedValue && pyramid) {
     slider.addEventListener('input', () => {
@@ -210,6 +210,6 @@ document.getElementById("fullscreenBtn").addEventListener("click", function() {
 changeTile(changeTile1Button, 'tile001.png');
 changeTile(changeTile2Button, 'tile002.png');
 changeTile(changeTile3Button, 'tile003.png');
-changeTile(changeTile3Button, 'Angy.png');
+changeTile(changeTile4Button, 'Angy.png');
 
 
