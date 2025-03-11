@@ -26,13 +26,18 @@
   <label for="speedSlider">Speed: <span id="speedValue">2</span>x</label>
   <input type="range" id="speedSlider" min="-15" max="15" step="0.5" value="2">
 </div>
-  <center><label>Background and Hands</label></center>
-<center> <button onclick="toggleBackground()">Toggle Background</button> <button onclick="toggleHand()">Toggle Hand</button> </center>
+  <center><label>Backgrounds</label></center>
+<center> <button onclick="toggleBackground()">Toggle Background</button></center>
 <div class="button-container">
   <center><label>Emotions</label></center>
   <button id="changeTile1">Normal</button>
   <button id="changeTile2">Sad</button>
   <button id="changeTile3">Happy</button>
+  <br></br>
+   <center><label>Hands</label></center>
+  <button onclick="document.getElementById('hand').src = 'hand0.png'">None</button>
+  <button onclick="document.getElementById('hand').src = 'hand1.png'">Vibe check</button>
+  <button onclick="document.getElementById('hand').src = 'hand2.png'">Gun</button>
   <br></br>
   <center><label>Custom Prism Lab</label></center>
   <div style="text-align: center;"><input type="file" id="fileInput" accept="image/*"/></div>
