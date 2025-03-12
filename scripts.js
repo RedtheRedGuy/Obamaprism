@@ -134,10 +134,23 @@ function toggleHand() {
     }
     handenabled = !handenabled;
 }
-
 const fileInput = document.getElementById('fileInput');
+const brightnessSlider = document.getElementById('brightnessSlider');
 
-fileInput.addEventListener('change', (e) => {
+const overlayImage = new Image(); // Create overlay image object
+let uploadedImage = null; // Store the uploaded image
+
+// Set the source for the overlay image
+overlayImage.src = 'Overlay.png';
+
+// Event listener for image upload
+fileInput.addEventListener('change', processImage);
+
+// Event listener for brightness adjustment slider
+brightnessSlider.addEventListener('input', applyBrightness);
+
+// Process uploaded image and display
+function processImage(e) {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -147,64 +160,118 @@ fileInput.addEventListener('change', (e) => {
     }
 
     const reader = new FileReader();
-
     reader.onload = (event) => {
-        const img = new Image();
-        img.src = event.target.result;
+        uploadedImage = new Image();
+        uploadedImage.src = event.target.result;
 
-        img.onload = () => {
-            const overlay = new Image();
-            overlay.src = 'Overlay.png';
-
-            overlay.onload = () => {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width;
-                canvas.height = img.height;
-                const ctx = canvas.getContext('2d');
-
-            
-                ctx.drawImage(img, 0, 0);
-                ctx.drawImage(overlay, 0, 0, img.width, img.height);
-
-                const front = document.querySelector('.front');
-                front.style.backgroundImage = `url(${canvas.toDataURL()})`;
-            };
+        uploadedImage.onload = () => {
+            // Once the image is loaded, apply the brightness
+            applyBrightness();
         };
     };
 
     reader.readAsDataURL(file);
-});
+}
+
+// Apply brightness adjustment to the uploaded image and default left/right images
+function applyBrightness() {
+    if (!uploadedImage || !overlayImage) return;
+
+    // Get the brightness value from the slider
+    const brightness = brightnessSlider.value;
+
+    // Create a canvas to draw the uploaded image for the front face
+    const canvas = document.createElement('canvas');
+    canvas.width = uploadedImage.width;
+    canvas.height = uploadedImage.height;
+    const ctx = canvas.getContext('2d');
+
+    // Draw the uploaded image onto the canvas for the front face
+    ctx.drawImage(uploadedImage, 0, 0);
+    ctx.filter = `brightness(${brightness}%)`;
+    ctx.drawImage(overlayImage, 0, 0, uploadedImage.width, uploadedImage.height);
+    document.querySelector('.front').style.backgroundImage = `url(${canvas.toDataURL()})`;
+
+    // Apply brightness to the default left face image
+    const leftFace = document.querySelector('.left');
+    leftFace.style.filter = `brightness(${brightness}%)`;
+
+    // Apply brightness to the default right face image
+    const rightFace = document.querySelector('.right');
+    rightFace.style.filter = `brightness(${brightness}%)`;
+}
 
 
+const configurationFileInput = document.getElementById('configurationFileInput');
 
-document.getElementById("fullscreenBtn").addEventListener("click", function() {
-    if (!document.fullscreenElement &&    // Check if fullscreen is not active
-        !document.webkitFullscreenElement && 
-        !document.mozFullScreenElement && 
-        !document.msFullscreenElement) {
-        
-        // Request fullscreen for different browsers
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-        } else if (document.documentElement.webkitRequestFullscreen) { // Safari
-            document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-            document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-            document.documentElement.msRequestFullscreen();
+const frontPyramidFace = document.querySelector('.front');
+const leftPyramidFace = document.querySelector('.left');
+const rightPyramidFace = document.querySelector('.right');
+
+function savePyramidConfiguration() {
+    const pyramidConfig = {
+        frontFace: {
+            backgroundImage: frontPyramidFace.style.backgroundImage,
+            brightness: frontPyramidFace.style.filter
+        },
+        leftFace: {
+            brightness: leftPyramidFace.style.filter
+        },
+        rightFace: {
+            brightness: rightPyramidFace.style.filter
+        },
+        hand: {
+            src : hand.src
         }
-    } else {
-        // Exit fullscreen for different browsers
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { // Safari
-            document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) { // Firefox
-            document.mozCancelFullScreen();
-        } else if (document.msExitFullscreen) { // IE/Edge
-            document.msExitFullscreen();
+    };
+
+    const blob = new Blob([JSON.stringify(pyramidConfig)], { type: 'application/json' });
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = 'my obama.prism';
+    downloadLink.click();
+    alert("Saved");
+}
+
+
+function loadPyramidConfiguration() {
+    configurationFileInput.click();
+}
+
+configurationFileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+if (!file.name.endsWith('.prism')) {
+    alert('cringe. its not .prism, you boomer.');
+    return;
+}
+
+ 
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const pyramidConfig = JSON.parse(e.target.result);
+
+        if (pyramidConfig.frontFace) {
+            frontPyramidFace.style.backgroundImage = pyramidConfig.frontFace.backgroundImage || '';
+            frontPyramidFace.style.filter = pyramidConfig.frontFace.brightness || '';
         }
-    }
+
+        if (pyramidConfig.leftFace) {
+            leftPyramidFace.style.filter = pyramidConfig.leftFace.brightness || '';
+        }
+
+        if (pyramidConfig.rightFace) {
+            rightPyramidFace.style.filter = pyramidConfig.rightFace.brightness || '';
+        }
+        if (pyramidConfig.hand) {
+            hand.src = pyramidConfig.hand.src || '';
+        }
+        alert("Pyramid loaded!");
+        configurationFileInput.value = '';
+    };
+
+    reader.readAsText(file);
 });
 
 changeTile(changeTile1Button, 'tile001.png');
