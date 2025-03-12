@@ -51,12 +51,22 @@
   <br></br>
   <center><label>Custom Prism Lab</label></center>
   <div style="text-align: center;"><input type="file" id="fileInput" accept="image/*"/></div>
+<br>
+<center><label>Custom Prism Skin Tone</label></center>
+<input type="range" id="brightnessSlider" min="50" max="200" value="100">
+<br></br>
+<center><label>Files</label></center>
+
+<center><button onclick="savePyramidConfiguration()">Save Pyramid</button></center>
+<center><button onclick="loadPyramidConfiguration()">Load Pyramid</button></center>
+<input type="file" id="configurationFileInput" style="display: none;" />
+
 </div>
   <br>
   <center><label>Social media</label></center>
 
     <center>
-    <button onclick="window.location.href='https://discord.gg/rnZXN4G3Je';">Discord</button>
+    <button onclick="window.location.href='https://discord.gg/rnZXN4G3Je';">Discord (pls join)</button>
     </center>
   <br>
  <center><label>Animation</label></center>
