@@ -242,10 +242,7 @@ function loadPyramidConfiguration() {
 configurationFileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
-if (!file.name.endsWith('.prism')) {
-    alert('cringe. its not .prism, you boomer.');
-    return;
-}
+
 
  
     const reader = new FileReader();
