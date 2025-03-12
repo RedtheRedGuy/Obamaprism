@@ -225,7 +225,7 @@ function savePyramidConfiguration() {
         }
     };
 
-    const blob = new Blob([JSON.stringify(pyramidConfig)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(pyramidConfig)], { type: 'application/octet-stream' });
 
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(blob);
@@ -242,6 +242,10 @@ function loadPyramidConfiguration() {
 configurationFileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    if (!file.name.endsWith('.prism')) {
+    alert('cringe. its not .prism, you boomer.');
+    return;
+    }
 
 
  
